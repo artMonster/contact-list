@@ -10,13 +10,13 @@ export const getItemData = (item) => ({
     item
 })
 
-export const removeItem = (id) => ({
+export const removeItemData = (id) => ({
     type: REMOVE_ITEM,
     id
 })
 
 export function fetchItems(url) {
-    return async (dispatch) => {
+    return (dispatch) => {
         fetch(url)
             .then(response => {
                 if (!response.ok) {
@@ -25,14 +25,13 @@ export function fetchItems(url) {
                 return response
             })
             .then(response => response.json())
-            .then(items => dispatch(fetchItemsData(items.data))
-            )
+            .then(items => dispatch(fetchItemsData(items.data)))
             .catch(() => {})
     }
 }
 
 export function getItem(url) {
-    return async (dispatch) => {
+    return (dispatch) => {
         fetch(url)
             .then(response => {
                 if (!response.ok) {
@@ -48,9 +47,7 @@ export function getItem(url) {
 }
 
 export const updateItem = (firstname, lastname, birthday, gender, email, phone, id) => (
-    
-    async (dispatch) => {
-
+    (dispatch) => {
         const requestOptions = {
             method: 'PUT',
             headers: { 
@@ -66,7 +63,6 @@ export const updateItem = (firstname, lastname, birthday, gender, email, phone, 
                 if (!response.ok) {
                   throw new Error(response.statusText)
                 }
-                console.log(response)
                 return response
             })
             .then(response => response.json())
@@ -77,9 +73,7 @@ export const updateItem = (firstname, lastname, birthday, gender, email, phone, 
 )
 
 export const addItem = (firstname, lastname, birthday, gender, email, phone) => (
-    
-    async (dispatch) => {
-
+    (dispatch) => {
         const requestOptions = {
             method: 'POST',
             headers: { 
@@ -95,7 +89,6 @@ export const addItem = (firstname, lastname, birthday, gender, email, phone) => 
                 if (!response.ok) {
                   throw new Error(response.statusText)
                 }
-                console.log(response)
                 return response
             })
             .then(response => response.json())
@@ -105,3 +98,27 @@ export const addItem = (firstname, lastname, birthday, gender, email, phone) => 
     }
 )
 
+export const removeItem = (id) => (
+    (dispatch) => {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': "*/*",
+                'Connection': 'keep-alive',
+            }
+        }
+
+        fetch('https://papaweb.name/clilist/public/api/clients/' + id, requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                  throw new Error(response.statusText)
+                }
+                return response
+            })
+            .then(response => response.json())
+            .then(() => dispatch(fetchItems('https://papaweb.name/clilist/public/api/clients/'))
+            )
+            .catch(() => {})
+    }
+)

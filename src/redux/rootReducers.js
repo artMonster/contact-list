@@ -48,7 +48,7 @@ const item = (state = [], { item, type } ) => {
     }
 }
 
-const items = (state = [], { firstname, lastname, birthday, gender, email, phone, type, items } ) => {
+const items = (state = [], { firstname, lastname, birthday, gender, email, phone, type, items, id } ) => {
     switch (type) {
         case FETCH_ITEMS:
             return items
@@ -64,7 +64,7 @@ const items = (state = [], { firstname, lastname, birthday, gender, email, phone
                 }
             ]
         case REMOVE_ITEM:
-            return [...state].filter(items => items.email !== email)
+            return [...state].filter(items => items.id !== id)
         default:
             return state
     }

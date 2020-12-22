@@ -27,6 +27,7 @@ class List extends Component {
 
 const mapStateToProps = state => ({
     items: state.items,
+    item: []
   })
   
   const mapDispatchToProps = dispatch => ({

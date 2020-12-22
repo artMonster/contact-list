@@ -15,6 +15,7 @@ h1 {
 
 p {
     margin: 0 0 1rem 0;
+    color: #ffffff;
 }
 
 button,
@@ -24,8 +25,20 @@ a {
     font-family: 'Poppins', sans-serif;
 }
 
-.text-center {
+small {
+    color: #909090;
+}
+
+.text_center {
     text-align: center;
+}
+
+.text_accent {
+    color: #246BFD;
+}
+
+.text_phone {
+    color: #158585;
 }
 
 .btn {
@@ -90,6 +103,18 @@ a {
     background-color: #246BFD;
 }
 
+.btn_outline_email {
+    border: 2px solid #246BFD;
+    background-color: transparent;
+    color: #246BFD;
+}
+
+.btn_outline_phone {
+    border: 2px solid #158585;
+    background-color: transparent;
+    color: #158585;
+}
+
 .header {
     margin-bottom: 1.5rem;
     margin-top: 1.5rem;
@@ -132,13 +157,25 @@ a {
     margin-right: auto;
 }
 
-p {
-    color: #ffffff;
-}
-
-.title-superbig {
+.title_superbig {
     font-size: 10rem;
     color: #9576b5;
+}
+
+.title_big {
+    font-size: 3rem;
+    color: #9576b5;
+    line-height: 1;
+}
+
+.page_col {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.py_big {
+    padding-bottom: 3rem;
+    padding-top: 3rem;
 }
 
 .item,
@@ -298,7 +335,7 @@ input:focus+label {
 }
 
 .item_number,
-.card_gender_icon,
+.gender_icon,
 .card_navigate {
     text-align: center;
     flex: 0 0 auto;
@@ -340,6 +377,8 @@ input:focus+label {
     font-weight: 700;
     line-height: 1.5rem;
     opacity: 0.3;
+    margin-right: auto;
+    margin-left: auto;
     transition: all .5s ease;
 }
 
@@ -404,26 +443,28 @@ input:focus+label {
     }
 }
 
-.card_gender_icon span {
+.gender_icon span {
     border-radius: 50%;
     background-color: #000000;
     color: #ffffff;
     text-align: center;
     width: 2rem;
     height: 2rem;
-    display: table;
-    vertical-align: baseline;
+    display: inline-block;
+    vertical-align: middle;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    background-size: 35%
+    background-size: 35%;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
-.card_gender_icon .female {
+.gender_icon .female {
     background-color: #633548;
     background-image: url("icons/female.svg");
 }
 
-.card_gender_icon .male {
+.gender_icon .male {
     background-color: #353763;
     background-image: url("icons/male.svg");
 }

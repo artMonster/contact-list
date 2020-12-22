@@ -7,7 +7,7 @@ const ListItem = ({item, removeItem}) => (
         <div className="item_col">
             <div className="item_card">
                 <Link to={`users/${item.id}`} className="card_link" />
-                <div className="card_col card_gender_icon">
+                <div className="card_col gender_icon">
                     <span className={item.gender}></span>
                 </div>
                 <div className="card_col">
