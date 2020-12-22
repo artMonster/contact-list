@@ -58,7 +58,7 @@ export const updateItem = (firstname, lastname, birthday, gender, email, phone, 
             body: JSON.stringify({ firstname, lastname, birthday, gender, email, phone })
         }
 
-        fetch('https://papaweb.name/clilist/public/api/clients/' + id, requestOptions)
+        fetch('https://vault.papaweb.name/clilist/public/api/clients/' + id, requestOptions)
             .then(response => {
                 if (!response.ok) {
                   throw new Error(response.statusText)
@@ -66,7 +66,7 @@ export const updateItem = (firstname, lastname, birthday, gender, email, phone, 
                 return response
             })
             .then(response => response.json())
-            .then(() => dispatch(fetchItems('https://papaweb.name/clilist/public/api/clients/'))
+            .then(() => dispatch(fetchItems('https://vault.papaweb.name/clilist/public/api/clients'))
             )
             .catch(() => {})
     }
@@ -84,7 +84,7 @@ export const addItem = (firstname, lastname, birthday, gender, email, phone) => 
             body: JSON.stringify({ firstname, lastname, birthday, gender, email, phone })
         }
 
-        fetch('https://papaweb.name/clilist/public/api/clients', requestOptions)
+        fetch('https://vault.papaweb.name/clilist/public/api/clients', requestOptions)
             .then(response => {
                 if (!response.ok) {
                   throw new Error(response.statusText)
@@ -92,7 +92,7 @@ export const addItem = (firstname, lastname, birthday, gender, email, phone) => 
                 return response
             })
             .then(response => response.json())
-            .then(() => dispatch(fetchItems('https://papaweb.name/clilist/public/api/clients/'))
+            .then(() => dispatch(fetchItems('https://vault.papaweb.name/clilist/public/api/clients'))
             )
             .catch(() => {})
     }
@@ -109,7 +109,7 @@ export const removeItem = (id) => (
             }
         }
 
-        fetch('https://papaweb.name/clilist/public/api/clients/' + id, requestOptions)
+        fetch('https://vault.papaweb.name/clilist/public/api/clients/' + id, requestOptions)
             .then(response => {
                 if (!response.ok) {
                   throw new Error(response.statusText)
@@ -117,7 +117,7 @@ export const removeItem = (id) => (
                 return response
             })
             .then(response => response.json())
-            .then(() => dispatch(fetchItems('https://papaweb.name/clilist/public/api/clients/'))
+            .then(() => dispatch(fetchItems('https://vault.papaweb.name/clilist/public/api/clients'))
             )
             .catch(() => {})
     }

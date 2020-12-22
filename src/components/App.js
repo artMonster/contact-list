@@ -19,9 +19,9 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" children={ <List /> } />
-          <Route exact path="/users/new/" children={ <NewItem /> } />
-          <Route exact path="/users/:id/" children={ <Item /> } />
-          <Route exact path="/users/:id/edit/" children={ <EditItem /> } />
+          <Route path="/users/new/" children={ <NewItem /> } />
+          <Route path="/users/:id/" children={ <Item /> } />
+          <Route path="/users/:id/edit/" children={ <EditItem /> } />
           <Route path="*" children={ <Blank /> } />
         </Switch>
       </Router>

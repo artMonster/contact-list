@@ -8,7 +8,7 @@ class List extends Component {
     
 
     componentDidMount() {
-        this.props.fetchItems('https://papaweb.name/clilist/public/api/clients')
+        this.props.fetchItems('https://vault.papaweb.name/clilist/public/api/clients')
     }
     
     render() {

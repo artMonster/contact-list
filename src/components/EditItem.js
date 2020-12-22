@@ -46,7 +46,7 @@ class EditItem extends Component {
 
     componentDidMount() {
         const { id } = this.props.match.params
-        this.props.getItem('https://papaweb.name/clilist/public/api/clients/' + id)
+        this.props.getItem('https://vault.papaweb.name/clilist/public/api/clients/' + id)
     }
 
     render() {
