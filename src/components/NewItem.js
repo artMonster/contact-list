@@ -1,6 +1,8 @@
 import React, {Component} from "react"
 import { Link, withRouter } from "react-router-dom"
+import { connect } from 'react-redux'
 
+import { addItem } from '../redux/actions'
 
 const MONTH = [
     {value: '01', title: 'January'},
@@ -149,11 +151,16 @@ class NewItem extends Component {
                 </div>
                 <div className="form_btn">
                     <Link to="/" className="btn">Cancel</Link>
-                    <button type="submit" className="btn btn_accent">Submit</button>
+                    <button type="submit" className="btn btn_accent">Create New</button>
                 </div>
             </form>
         )
     }
 }
 
-export default withRouter(NewItem)
+const mapDispatchToProps = dispatch => ({
+    addItem: ({ firstname, lastname, birthday, gender, email, phone }) => dispatch(addItem(firstname, lastname, birthday, gender, email, phone)),
+  }
+)
+
+export default connect(mapDispatchToProps)(withRouter(NewItem))
