@@ -1,0 +1,497 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,700&display=swap');
+body {
+    background-color: #181A20;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    min-width: 320px;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    margin: 0 0 1rem 0;
+}
+
+button,
+a {
+    border: none;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn {
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #1F2027;
+    color: #909090;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 3px 3px #111111;
+    transition: all 0.5s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 1.5rem;
+    outline: none;
+    font-size: .75rem;
+    letter-spacing: 0.1rem;
+}
+
+.btn:hover {
+    box-shadow: 0 1px 1px 0 #111111;
+    color: #ffffff;
+}
+
+.btn_plus {
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    padding: 0;
+    letter-spacing: normal;
+}
+
+.btn_edit {
+    background-repeat: no-repeat;
+    background-color: #353763;
+    background-position: 50% 50%;
+    background-image: url("icons/edit.svg");
+}
+
+.btn_delete {
+    background-repeat: no-repeat;
+    background-color: #633535;
+    background-position: 50% 50%;
+    background-image: url("icons/close.svg");
+}
+
+.btn_delete:hover {
+    background-color: #a52222;
+}
+
+.btn_plus:hover {
+    text-shadow: 0 0px 6px #ffffffb9;
+}
+
+.btn_accent {
+    background-color: #1E428E;
+    color: #ffffff;
+}
+
+.btn_accent:hover {
+    background-color: #246BFD;
+}
+
+.header {
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.header_mainmenu {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.header_col {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.header_logo {
+    flex: 1 0 0%;
+}
+
+.logo_icon {
+    width: 50px;
+    height: 50px;
+    display: inline;
+    vertical-align: middle;
+}
+
+.logo_text {
+    font-size: 1.5rem;
+    color: #406b84;
+    font-weight: 700;
+    vertical-align: middle;
+    padding-left: 0.5rem;
+}
+
+.list,
+.form,
+.page {
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p {
+    color: #ffffff;
+}
+
+.title-superbig {
+    font-size: 10rem;
+    color: #9576b5;
+}
+
+.item,
+.item_card,
+.header,
+.form_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.form_col_two {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.form_col {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    flex: 100%;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.form_col label {
+    width: 100%;
+    display: block;
+    color: #777777;
+    position: absolute;
+    top: -1.5rem;
+    left: 0.5rem;
+    text-transform: uppercase;
+    font-size: 75%;
+    letter-spacing: 0.15rem;
+    transition: all .5s ease;
+}
+
+input,
+select {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #262A34;
+    height: 2rem;
+    outline: none;
+    color: #ffffff !important;
+    width: 100%;
+    margin: 0;
+    display: inline-block;
+    transition: all .5s ease;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff;
+    box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+select {
+    background-color: #181A20;
+}
+
+.form_check {
+    height: 2rem;
+    flex: 1 0;
+}
+
+.form_check input {
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: bottom;
+}
+
+input:focus {
+    border-bottom: 1px solid #ccc;
+}
+
+select:focus+label,
+input:focus+label {
+    color: #ffffff;
+}
+
+.form_btn {
+    text-align: right;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.form_btn .btn {
+    margin-right: 1rem;
+}
+
+.form_title {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.form_title p {
+    color: #9576b5;
+    font-size: 1.25rem;
+}
+
+.form_check {
+    position: relative;
+}
+
+.item {
+    margin-bottom: 1rem;
+}
+
+.item_col {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    flex: 1 0 0%;
+}
+
+.card_col {
+    padding-left: 0.5rem;
+    flex: 1 0 auto;
+}
+
+.card_body {
+    width: 100%;
+}
+
+.card_link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.card_name,
+.card_email {
+    margin: 0;
+    transition: color .6s ease;
+}
+
+.card_name {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.card_email {
+    font-size: 0.75rem;
+    color: #5E6272;
+}
+
+.item_number,
+.card_gender_icon,
+.card_navigate {
+    text-align: center;
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.item_number {
+    padding-right: 0;
+}
+
+.card_navigate {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: right;
+    flex: 20%;
+    width: auto;
+    z-index: 2;
+}
+
+.card_navigate .btn {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    vertical-align: middle;
+}
+
+.item_number span {
+    border-radius: .75rem;
+    background-color: #232730;
+    color: #9576b5;
+    text-align: center;
+    width: 2rem;
+    height: 1.75rem;
+    padding-top: 0.25rem;
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    opacity: 0.3;
+    transition: all .5s ease;
+}
+
+.item_card {
+    background-color: #262A34;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    position: relative;
+    transition: all .5s ease;
+}
+
+.item_card:hover {
+    transform: rotateX(0deg);
+    animation: card_hover .6s ease-in;
+}
+
+.item_card:hover .card_name {
+    color: #9576b5;
+}
+
+.item_card:hover .card_email {
+    color: #ffffff;
+}
+
+.item:hover .item_number span {
+    opacity: 1;
+}
+
+@keyframes card_hover {
+    0% {
+        transform: rotateX(0deg);
+        background-color: #262A34;
+        opacity: 1;
+    }
+    20% {
+        transform: rotateX(35deg);
+        background-color: #21242c;
+        opacity: .8;
+    }
+    35% {
+        background-color: #262A34;
+        opacity: 1;
+    }
+    50% {
+        transform: rotateX(-20deg);
+        background-color: #252831;
+        opacity: .9;
+    }
+    65% {
+        background-color: #262A34;
+        opacity: 1;
+    }
+    80% {
+        transform: rotateX(10deg);
+        background-color: #262A34;
+        opacity: .9;
+    }
+    100% {
+        transform: rotateX(0deg);
+        background-color: #262A34;
+        opacity: 1;
+    }
+}
+
+.card_gender_icon span {
+    border-radius: 50%;
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    width: 2rem;
+    height: 2rem;
+    display: table;
+    vertical-align: baseline;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 35%
+}
+
+.card_gender_icon .female {
+    background-color: #633548;
+    background-image: url("icons/female.svg");
+}
+
+.card_gender_icon .male {
+    background-color: #353763;
+    background-image: url("icons/male.svg");
+}
+
+.form_col_three {
+    max-width: 33%;
+    width: auto;
+    flex: auto;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ripple div {
+    position: absolute;
+    border: 4px solid #fff;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}
+
+@media (min-width: 380px) {
+    .card_navigate {
+        max-width: 10%;
+    }
+}
+
+@media (min-width: 768px) {
+    .form_col_two {
+        max-width: 50%;
+        width: auto;
+    }
+    .form_col_three {
+        max-width: 33%;
+        width: auto;
+    }
+    .form_col {
+        flex: auto;
+    }
+}
