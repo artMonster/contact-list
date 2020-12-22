@@ -1,5 +1,11 @@
 import React, {Component} from "react"
 import { Link, withRouter } from "react-router-dom"
+import { connect } from 'react-redux'
+import Moment from 'moment'
+
+import { getItem, updateItem } from '../redux/actions'
+
+import Loader from './Loader'
 
 
 const MONTH = [
@@ -19,36 +25,23 @@ const MONTH = [
 
 const DAYS = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
 
-const YEARS = [
-    '1901', 
-    '1902', 
-    '1903', 
-    '1904', 
-    '1905', 
-    '1906', 
-    '1907', 
-    '1908', 
-    '1909', 
-    '1910', 
-    '1911', 
-    '1912', 
-    '1913', 
-    '1914', 
-    '1915', 
-    '1916', 
-    '1917', 
-    '1918', 
-    '1919', 
-    '1920'
-]
-
+const NOW_FY = new Date().getUTCFullYear()
+const YEARS = Array(NOW_FY - (NOW_FY - 120)).fill('').map((v, idx) => NOW_FY - idx)
 
 
 class EditItem extends Component {
 
+    constructor(props){
+        super(props)
+        this.state={
+          loading: true,
+        }
+    }
+
     handleForm = (e) => {
         e.preventDefault()
         const data = {
+            id: e.target.uid.value,
             firstname: e.target.firstname.value,
             lastname: e.target.lastname.value,
             email: e.target.email.value,
@@ -57,103 +50,124 @@ class EditItem extends Component {
             birthday: e.target.year.value + '-' + e.target.month.value + '-' + e.target.day.value
             
         }
-        this.props.addItem(data)
+        this.props.updateItem(data)
         this.props.history.push('/');
     }
 
-    render() {
-        return (
-            <form className="form" onSubmit={this.handleForm}>
-                <div className="form_wrap">
-                    <div className="form_col form_title">
-                        <p>Name</p>
-                    </div>
-                    <div className="form_col">
-                        <input type="text" id="firstname" name="firstname" required />
-                        <label htmlFor="firstname">First name</label>
-                    </div>
-                    <div className="form_col">
-                        <input type="text" id="lastname" name="lastname" required />
-                        <label htmlFor="lastname">Last name</label>
-                    </div>
-                </div>
-                <div className="form_wrap">
-                    <div className="form_col form_title">
-                        <p className="">Contacts</p>
-                    </div>
-                    <div className="form_col">
-                        <input type="email" id="email" name="email" required />
-                        <label htmlFor="email" className="form-label">Email </label>
-                    </div>
-                    <div className="form_col">
-                        <input type="tel" id="phone" required />
-                        <label htmlFor="phone" className="form-label">Phone</label>
-                    </div>
-                </div>
-                <div className="form_wrap ">
-                    <div className="form_col form_col_two">
-                        <div className="form_wrap">
-                            <div className="form_col form_title">
-                                <p className="form_title">Gender</p>
-                            </div>
-                            <div className="form_col form_check">
-                                <input id="genderFemale" name="gender" value="female" type="radio" required />
-                                <label htmlFor="genderFemale">Female</label>
-                            </div>
+    componentDidMount() {
+        const { id } = this.props.match.params
+        this.props.getItem('https://papaweb.name/clilist/public/api/clients/' + id)
+    }
 
-                            <div className="form_col form_check">
-                                <input id="genderMale" name="gender" value="male" type="radio" required />
-                                <label htmlFor="genderMale">Male</label>
+    render() {
+        const {id, firstname, lastname, gender, email, phone, birthday } = this.props.item
+
+        const birthdateMonth = Moment(birthday).format('MM')
+        const birthdateYear = Moment(birthday).format('YYYY')
+        const birthdateDay = Moment(birthday).format('DD')
+
+        if ( this.state.loading ) {
+            console.log(this)
+            return ( <Loader /> )
+        } else {
+            return (
+                <form className="form" onSubmit={this.handleForm}>
+                    <input type="hidden" id="uid" name="uid" defaultValue={id} required />
+                    <div className="form_wrap">
+                        <div className="form_col form_title">
+                            <p>Name</p>
+                        </div>
+                        <div className="form_col">
+                            <input type="text" id="firstname" name="firstname" defaultValue={firstname} required />
+                            <label htmlFor="firstname">First name</label>
+                        </div>
+                        <div className="form_col">
+                            <input type="text" id="lastname" name="lastname" defaultValue={lastname} required />
+                            <label htmlFor="lastname">Last name</label>
+                        </div>
+                    </div>
+                    <div className="form_wrap">
+                        <div className="form_col form_title">
+                            <p className="">Contacts</p>
+                        </div>
+                        <div className="form_col">
+                            <input type="email" id="email" name="email" defaultValue={email} required />
+                            <label htmlFor="email" className="form-label">Email </label>
+                        </div>
+                        <div className="form_col">
+                            <input type="tel" id="phone" name="phone" defaultValue={phone} required />
+                            <label htmlFor="phone" className="form-label">Phone</label>
+                        </div>
+                    </div>
+                    <div className="form_wrap ">
+                        <div className="form_col form_col_two">
+                            <div className="form_wrap">
+                                <div className="form_col form_title">
+                                    <p className="form_title">Gender</p>
+                                </div>
+                                <div className="form_col form_check">
+                                    <input id="genderFemale" name="gender" value="female" type="radio" defaultChecked={gender === 'female' ? true : false} required />
+                                    <label htmlFor="genderFemale">Female</label>
+                                </div>
+
+                                <div className="form_col form_check">
+                                    <input id="genderMale" name="gender" value="male" type="radio" defaultChecked={gender === 'male' ? true : false} required />
+                                    <label htmlFor="genderMale">Male</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="form_col form_col_two">
+                            <div className="form_wrap">
+                                <div className="form_col form_title">
+                                    <p>Birth date</p>
+                                </div>
+                                <div className="form_col form_col_three">
+                                    
+                                    <select id="birthDay" name="day" defaultValue={birthdateDay} required>
+                                        <option></option>
+                                        {DAYS.map((day, index) => (
+                                            <option key={index} value={day}>{day}</option>    
+                                        ))}
+                                    </select>
+                                    <label htmlFor="birthDay">Day</label>
+                                </div>
+                                <div className="form_col form_col_three">
+                                    
+                                    <select id="birthMonth" name="month" defaultValue={birthdateMonth} required>
+                                        <option></option>
+                                        {MONTH.map(({ value, title}, index) => (
+                                            <option key={index} value={value}>{title}</option>    
+                                        ))}
+                                    </select>
+                                    <label htmlFor="birthMonth">Month</label>
+                                </div>
+                                <div className="form_col form_col_three">
+                                    <select id="birthYear" name="year" defaultValue={birthdateYear} required>
+                                        <option></option>
+                                        {YEARS.map((year, index) => (
+                                            <option key={index} value={year}>{year}</option>    
+                                        ))}
+                                    </select>
+                                    <label htmlFor="birthYear">Year</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="form_col form_col_two">
-                        <div className="form_wrap">
-                            <div className="form_col form_title">
-                                <p>Birth date</p>
-                            </div>
-                            <div className="form_col form_col_three">
-                                
-                                <select id="birthDay" name="day" required>
-                                    <option></option>
-                                    {DAYS.map((day, index) => (
-                                        <option key={index} value={day}>{day}</option>    
-                                    ))}
-                                    <option value="01">01</option>
-                                    <option value="02">02</option>
-                                    <option value="03">03</option>
-                                </select>
-                                <label htmlFor="birthDay">Day</label>
-                            </div>
-                            <div className="form_col form_col_three">
-                                
-                                <select id="birthMonth" name="month" required>
-                                    <option></option>
-                                    {MONTH.map(({ value, title}, index) => (
-                                        <option key={index} value={value}>{title}</option>    
-                                    ))}
-                                </select>
-                                <label htmlFor="birthMonth">Month</label>
-                            </div>
-                            <div className="form_col form_col_three">
-                                <select id="birthYear" name="year" required>
-                                    <option></option>
-                                    {YEARS.map((year, index) => (
-                                        <option key={index} value={year}>{year}</option>    
-                                    ))}
-                                </select>
-                                <label htmlFor="birthYear">Year</label>
-                            </div>
-                        </div>
+                    <div className="form_btn">
+                        <Link to="/" className="btn">Cancel</Link>
+                        <button type="submit" className="btn btn_accent">Save</button>
                     </div>
-                </div>
-                <div className="form_btn">
-                    <Link to="/" className="btn">Cancel</Link>
-                    <button type="submit" className="btn btn_accent">Submit</button>
-                </div>
-            </form>
-        )
+                </form>
+            )
+        }
     }
 }
 
-export default withRouter(EditItem)
+const mapStateToProps = state => (state)
+
+const mapDispatchToProps = dispatch => ({
+    getItem: (url) => dispatch(getItem(url)),
+    updateItem: ({ firstname, lastname, birthday, gender, email, phone, id }) => dispatch(updateItem(firstname, lastname, birthday, gender, email, phone, id)),
+  }
+)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EditItem))

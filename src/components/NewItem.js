@@ -21,30 +21,8 @@ const MONTH = [
 
 const DAYS = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
 
-const YEARS = [
-    '1901', 
-    '1902', 
-    '1903', 
-    '1904', 
-    '1905', 
-    '1906', 
-    '1907', 
-    '1908', 
-    '1909', 
-    '1910', 
-    '1911', 
-    '1912', 
-    '1913', 
-    '1914', 
-    '1915', 
-    '1916', 
-    '1917', 
-    '1918', 
-    '1919', 
-    '1920'
-]
-
-
+const NOW_FY = new Date().getUTCFullYear()
+const YEARS = Array(NOW_FY - (NOW_FY - 120)).fill('').map((v, idx) => NOW_FY - idx)
 
 class NewItem extends Component {
 
@@ -60,10 +38,12 @@ class NewItem extends Component {
             
         }
         this.props.addItem(data)
-        this.props.history.push('/');
+        this.props.history.push('/')
+
     }
 
     render() {
+
         return (
             <form className="form" onSubmit={this.handleForm}>
                 <div className="form_wrap">
@@ -88,7 +68,7 @@ class NewItem extends Component {
                         <label htmlFor="email" className="form-label">Email </label>
                     </div>
                     <div className="form_col">
-                        <input type="tel" id="phone" required />
+                        <input type="tel" id="phone" name="phone" required />
                         <label htmlFor="phone" className="form-label">Phone</label>
                     </div>
                 </div>
@@ -120,10 +100,7 @@ class NewItem extends Component {
                                     <option></option>
                                     {DAYS.map((day, index) => (
                                         <option key={index} value={day}>{day}</option>    
-                                    ))}
-                                    <option value="01">01</option>
-                                    <option value="02">02</option>
-                                    <option value="03">03</option>
+                                    ))}   
                                 </select>
                                 <label htmlFor="birthDay">Day</label>
                             </div>
@@ -158,9 +135,13 @@ class NewItem extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    items: state.items,
+})
+
 const mapDispatchToProps = dispatch => ({
     addItem: ({ firstname, lastname, birthday, gender, email, phone }) => dispatch(addItem(firstname, lastname, birthday, gender, email, phone)),
   }
 )
 
-export default connect(mapDispatchToProps)(withRouter(NewItem))
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(NewItem))

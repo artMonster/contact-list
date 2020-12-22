@@ -8,7 +8,7 @@ class Item extends Component {
     componentDidMount() {  
         const { id } = this.props.match.params
         this.props.getItem('https://papaweb.name/clilist/public/api/clients/' + id)
-        console.log(this)
+        //console.log(this)
     }
 
     render() {

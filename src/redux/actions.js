@@ -15,35 +15,6 @@ export const removeItem = (id) => ({
     id
 })
 
-export const addItem = (firstname, lastname, birthday, gender, email, phone) => (
-    
-    async (dispatch) => {
-
-        const requestOptions = {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': "*/*",
-                'Connection': 'keep-alive',
-            },
-            body: JSON.stringify({ firstname, lastname, birthday, gender, email, phone })
-        }
-
-        fetch('https://papaweb.name/clilist/public/api/clients', requestOptions)
-            .then(response => {
-                if (!response.ok) {
-                  throw new Error(response.statusText)
-                }
-                console.log(response)
-                return response
-            })
-            .then(response => response.json())
-            .then(() => dispatch(fetchItems('https://papaweb.name/clilist/public/api/clients/'))
-            )
-            .catch(() => {})
-    }
-)
-
 export function fetchItems(url) {
     return async (dispatch) => {
         fetch(url)
@@ -75,3 +46,62 @@ export function getItem(url) {
             .catch(() => {})
     }
 }
+
+export const updateItem = (firstname, lastname, birthday, gender, email, phone, id) => (
+    
+    async (dispatch) => {
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': "*/*",
+                'Connection': 'keep-alive',
+            },
+            body: JSON.stringify({ firstname, lastname, birthday, gender, email, phone })
+        }
+
+        fetch('https://papaweb.name/clilist/public/api/clients/' + id, requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                  throw new Error(response.statusText)
+                }
+                console.log(response)
+                return response
+            })
+            .then(response => response.json())
+            .then(() => dispatch(fetchItems('https://papaweb.name/clilist/public/api/clients/'))
+            )
+            .catch(() => {})
+    }
+)
+
+export const addItem = (firstname, lastname, birthday, gender, email, phone) => (
+    
+    async (dispatch) => {
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': "*/*",
+                'Connection': 'keep-alive',
+            },
+            body: JSON.stringify({ firstname, lastname, birthday, gender, email, phone })
+        }
+
+        fetch('https://papaweb.name/clilist/public/api/clients', requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                  throw new Error(response.statusText)
+                }
+                console.log(response)
+                return response
+            })
+            .then(response => response.json())
+            .then(() => dispatch(fetchItems('https://papaweb.name/clilist/public/api/clients/'))
+            )
+            .catch(() => {})
+    }
+)
+
